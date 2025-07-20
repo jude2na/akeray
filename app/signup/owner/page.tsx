@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Building2, Upload, MapPin, Phone, Mail, User, FileText, CheckCircle, ArrowLeft } from "lucide-react"
+import { Building2, Upload, MapPin, Phone, Mail, User, FileText, CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
