@@ -9,6 +9,7 @@ import {
 	CheckCircle,
 	Clock,
 	ArrowUpRight,
+  ArrowRight,
 	ArrowDownRight,
 	Plus,
 	MapPin,
