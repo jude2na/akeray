@@ -46,6 +46,7 @@ const navigationItems = {
 	admin: [
 		{ name: "Dashboard", href: "/dashboard/admin", icon: Home },
 		{ name: "Users", href: "/dashboard/admin/users", icon: Users },
+		{ name: "Register", href: "/dashboard/admin/register", icon: User },
 		{ name: "Properties", href: "/dashboard/admin/properties", icon: Building },
 		{ name: "Leases", href: "/dashboard/admin/leases", icon: FileText },
 		{ name: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
