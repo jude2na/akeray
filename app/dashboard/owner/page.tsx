@@ -9,12 +9,12 @@ import {
 	CheckCircle,
 	Clock,
 	ArrowUpRight,
-  ArrowRight,
 	ArrowDownRight,
 	Plus,
 	MapPin,
 	FileText,
 } from "lucide-react";
+import { ArrowRight } from 'react-bootstrap-icons';
 import {
 	Card,
 	CardContent,
