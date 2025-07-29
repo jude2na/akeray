@@ -44,13 +44,23 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: (configService) => {
-                    const dbConfig = configService.get('database');
+                    const dbConfig = configService.get("database");
                     return {
-                        type: 'postgres',
+                        type: "postgres",
                         url: dbConfig.url,
-                        entities: [user_entity_1.User, lease_entity_1.Lease, payment_entity_1.Payment, Request, sales_entity_1.Sale, property_entity_1.Property, unit_entity_1.Unit, tenant_entity_1.Tenant, owner_entity_1.Owner, admin_entity_1.Admin],
+                        entities: [
+                            user_entity_1.User,
+                            lease_entity_1.Lease,
+                            payment_entity_1.Payment,
+                            Request,
+                            sales_entity_1.Sale,
+                            property_entity_1.Property,
+                            unit_entity_1.Unit,
+                            tenant_entity_1.Tenant,
+                            owner_entity_1.Owner,
+                            admin_entity_1.Admin,
+                        ],
                         synchronize: dbConfig.synchronize,
-                        ssl: dbConfig.ssl ? { rejectUnauthorized: false } : false,
                     };
                 },
                 inject: [config_1.ConfigService],
