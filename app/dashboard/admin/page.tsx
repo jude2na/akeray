@@ -209,7 +209,7 @@ export default function AdminDashboard() {
 												<p className="text-sm font-semibold text-gray-600">
 													{stat.title}
 												</p>
-												<p className="text-3xl font-bold text-gray-900">
+												<p className="text-3xl font-bold text-gray-700">
 													{stat.value}
 												</p>
 												<div className="flex items-center space-x-2">

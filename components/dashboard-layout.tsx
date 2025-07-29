@@ -146,7 +146,7 @@ export default function DashboardLayout({
 		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
 			{/* Desktop Sidebar */}
 			<div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-80 lg:flex-col">
-				<div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 shadow-2xl border-r border-gray-700">
+				<div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gradient-to-b from-[#9D9360] to-[#4A90E2] to-blue-700 px-6 pb-4 shadow-2xl border-r border-emerald-600/50">
 					{/* Logo */}
 					<div className="flex h-20 shrink-0 items-center">
 						<div className="flex items-center space-x-4">
@@ -160,7 +160,7 @@ export default function DashboardLayout({
 								<span className="font-bold text-xl bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
 									Akeray PMS
 								</span>
-								<p className="text-xs text-gray-400 font-medium">
+								<p className="text-xs text-emerald-100 font-medium">
 									Property Management System
 								</p>
 							</div>
@@ -188,8 +188,8 @@ export default function DashboardLayout({
 													className={cn(
 														"group flex gap-x-3 rounded-2xl p-4 text-sm font-semibold leading-6 transition-all duration-300",
 														isActive
-															? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg transform scale-[1.02]"
-															: "text-gray-300 hover:text-white hover:bg-gray-800 hover:scale-[1.01]"
+															? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-md transform scale-[1.02]"
+															: "text-emerald-100 hover:text-white hover:bg-emerald-600/30 hover:scale-[1.01]"
 													)}
 												>
 													<item.icon
@@ -197,7 +197,7 @@ export default function DashboardLayout({
 															"h-6 w-6 shrink-0 transition-colors",
 															isActive
 																? "text-white"
-																: "text-gray-400 group-hover:text-emerald-400"
+																: "text-emerald-200 group-hover:text-white"
 														)}
 													/>
 													<span className="truncate">{item.name}</span>
@@ -216,10 +216,10 @@ export default function DashboardLayout({
 							<DropdownMenuTrigger asChild>
 								<Button
 									variant="ghost"
-									className="w-full justify-start p-4 h-auto hover:bg-gray-800 rounded-2xl"
+									className="w-full justify-start p-4 h-auto hover:bg-emerald-600/30 rounded-2xl"
 								>
 									<div className="flex items-center space-x-3 w-full">
-										<Avatar className="h-12 w-12 ring-2 ring-emerald-200">
+										<Avatar className="h-12 w-12 ring-2 ring-emerald-200/50">
 											<AvatarImage src="/placeholder-user.jpg" />
 											<AvatarFallback className="bg-gradient-to-br from-emerald-500 to-blue-500 text-white font-bold">
 												{displayName
@@ -244,7 +244,7 @@ export default function DashboardLayout({
 												</Badge>
 											</div>
 										</div>
-										<ChevronDown className="h-4 w-4 text-gray-400" />
+										<ChevronDown className="h-4 w-4 text-emerald-200" />
 									</div>
 								</Button>
 							</DropdownMenuTrigger>
@@ -285,7 +285,7 @@ export default function DashboardLayout({
 			<Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
 				<SheetContent
 					side="left"
-					className="w-80 p-0 bg-gray-900/95 backdrop-blur-sm"
+					className="w-80 p-0 bg-gradient-to-b from-emerald-700 to-blue-700"
 				>
 					<div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
 						{/* Logo */}
@@ -298,10 +298,10 @@ export default function DashboardLayout({
 									</div>
 								</div>
 								<div>
-									<span className="font-bold text-xl bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+									<span className="font-bold text-xl text-emerald-100">
 										Akeray PMS
 									</span>
-									<p className="text-xs text-gray-400 font-medium">
+									<p className="text-xs text-emerald-100 font-medium">
 										Property Management System
 									</p>
 								</div>
@@ -322,8 +322,8 @@ export default function DashboardLayout({
 														className={cn(
 															"group flex gap-x-3 rounded-2xl p-4 text-sm font-semibold leading-6 transition-all duration-300",
 															isActive
-																? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-lg"
-																: "text-gray-300 hover:text-white hover:bg-gray-800"
+																? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-md"
+																: "text-emerald-100 hover:text-white hover:bg-emerald-600/30"
 														)}
 														onClick={() => setSidebarOpen(false)}
 													>
@@ -332,7 +332,7 @@ export default function DashboardLayout({
 																"h-6 w-6 shrink-0 transition-colors",
 																isActive
 																	? "text-white"
-																	: "text-gray-400 group-hover:text-emerald-400"
+																	: "text-emerald-200 group-hover:text-white"
 															)}
 														/>
 														<span className="truncate">{item.name}</span>
