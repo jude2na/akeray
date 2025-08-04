@@ -74,6 +74,9 @@ const navigationItems = {
 	],
 	tenant: [
 		{ name: "Dashboard", href: "/dashboard/tenant", icon: Home },
+		{ name: "Browse Properties", href: "/dashboard/tenant/properties", icon: Building },
+		{ name: "My Properties", href: "/dashboard/tenant/my-properties", icon: Users },
+		{ name: "Rental Requests", href: "/dashboard/tenant/rental-requests", icon: FileText },
 		{ name: "Payments", href: "/dashboard/tenant/payments", icon: CreditCard },
 		{ name: "Lease", href: "/dashboard/tenant/lease", icon: FileText },
 		{
