@@ -134,17 +134,21 @@ export default function PropertiesPage() {
 				{/* Header */}
 				<div className="flex items-center justify-between">
 					<div>
-						<h1 className="text-3xl font-poppins font-bold text-gray-900">
-							Properties
+						<h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+							ንብረቶች / Properties
 						</h1>
 						<p className="text-gray-600 mt-1">
-							Manage all your properties and units
+							ሁሉንም ንብረቶችዎን እና ክፍሎችዎን ያስተዳድሩ / Manage all your properties and
+							units
 						</p>
 					</div>
-					<Button asChild className="bg-[#4A90E2] hover:bg-[#2F80ED]">
+					<Button
+						asChild
+						className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700"
+					>
 						<Link href="/dashboard/admin/properties/new">
 							<Plus className="h-4 w-4 mr-2" />
-							Add Property
+							ንብረት ጨምር / Add Property
 						</Link>
 					</Button>
 				</div>
@@ -154,7 +158,7 @@ export default function PropertiesPage() {
 					<div className="relative flex-1">
 						<Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
 						<Input
-							placeholder="Search properties, addresses, or owners..."
+							placeholder="ንብረቶችን፣ አድራሻዎችን ወይም ባለቤቶችን ይፈልጉ... / Search properties, addresses, or owners..."
 							className="pl-10"
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
@@ -164,23 +168,25 @@ export default function PropertiesPage() {
 						<DropdownMenuTrigger asChild>
 							<Button variant="outline">
 								<Filter className="h-4 w-4 mr-2" />
-								Filter: {filterStatus === "all" ? "All" : filterStatus}
+								ማጣሪያ: {filterStatus === "all" ? "ሁሉም / All" : filterStatus}
 							</Button>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="end">
-							<DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
+							<DropdownMenuLabel>
+								ሁኔታ በመጠቀም ማጣሪያ / Filter by Status
+							</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={() => setFilterStatus("all")}>
-								All Properties
+								ሁሉም ንብረቶች / All Properties
 							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => setFilterStatus("active")}>
-								Active
+								ንቁ / Active
 							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => setFilterStatus("maintenance")}>
-								Under Maintenance
+								በጥገና ላይ / Under Maintenance
 							</DropdownMenuItem>
 							<DropdownMenuItem onClick={() => setFilterStatus("inactive")}>
-								Inactive
+								እንቅስቃሴ-አልባ / Inactive
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
@@ -251,7 +257,7 @@ export default function PropertiesPage() {
 											<DollarSign className="h-4 w-4 text-gray-500" />
 										</div>
 										<p className="text-sm font-medium">
-											₹{(property.monthlyRevenue / 1000).toFixed(0)}K
+											{(property.monthlyRevenue / 1000).toFixed(0)}K ETB
 										</p>
 										<p className="text-xs text-gray-500">Monthly</p>
 									</div>
