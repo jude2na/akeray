@@ -23,6 +23,8 @@ const maintenanceRequests = [
     id: "MNT-001",
     title: "Kitchen faucet leak",
     description: "Water dripping from kitchen sink faucet continuously",
+    property: "Sunrise Apartments",
+    unit: "Unit 3B",
     category: "plumbing",
     priority: "medium",
     status: "completed",
@@ -36,6 +38,8 @@ const maintenanceRequests = [
     id: "MNT-002",
     title: "Bedroom light fixture",
     description: "Light bulb needs replacement in master bedroom ceiling fixture",
+    property: "Sunrise Apartments",
+    unit: "Unit 4A",
     category: "electrical",
     priority: "low",
     status: "in_progress",
@@ -49,6 +53,8 @@ const maintenanceRequests = [
     id: "MNT-003",
     title: "Bathroom door lock",
     description: "Bathroom door lock is stuck and difficult to open/close",
+    property: "Green Valley Villa",
+    unit: null,
     category: "general",
     priority: "medium",
     status: "open",
@@ -62,6 +68,8 @@ const maintenanceRequests = [
     id: "MNT-004",
     title: "Air conditioning not cooling",
     description: "AC unit in living room not producing cold air, only warm air",
+    property: "City Center Complex",
+    unit: "Unit 2C",
     category: "hvac",
     priority: "high",
     status: "open",
@@ -306,6 +314,16 @@ export default function TenantMaintenancePage() {
                           <div>
                             <p className="font-medium text-sm">{request.title}</p>
                             <p className="text-xs text-gray-500 truncate">{request.description}</p>
+                            <div className="flex items-center space-x-2 mt-1">
+                              <Badge variant="outline" className="text-xs">
+                                {request.property}
+                              </Badge>
+                              {request.unit && (
+                                <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">
+                                  {request.unit}
+                                </Badge>
+                              )}
+                            </div>
                           </div>
                         </TableCell>
                         <TableCell>
