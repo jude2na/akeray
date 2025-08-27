@@ -34,6 +34,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import NotificationDropdown from "@/components/notification-dropdown";
 
 interface DashboardLayoutProps {
 	children: React.ReactNode;
@@ -145,6 +146,14 @@ export default function DashboardLayout({
 		router.push("/login");
 	};
 
+	const handleProfileClick = () => {
+		router.push(`/dashboard/${userRole}/profile`);
+	};
+
+	const handleSettingsClick = () => {
+		router.push(`/dashboard/${userRole}/settings`);
+	};
+
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
 			{/* Desktop Sidebar */}
@@ -249,11 +258,23 @@ export default function DashboardLayout({
 										</div>
 										<ChevronDown className="h-4 w-4 text-emerald-200" />
 									</div>
-								</Button>
-							</DropdownMenuTrigger>
+									<DropdownMenuItem 
+										className="cursor-pointer"
+										onClick={handleProfileClick}
+									>
+										className="cursor-pointer"
+										onClick={handleProfileClick}
+									>
+									<DropdownMenuItem 
+										className="cursor-pointer"
+										onClick={handleSettingsClick}
+									>
 							<DropdownMenuContent
 								align="end"
-								className="w-64 bg-white/95 backdrop-blur-sm"
+									<DropdownMenuItem 
+										className="cursor-pointer"
+										onClick={handleSettingsClick}
+									>
 							>
 								<DropdownMenuLabel className="text-center">
 									<div className="font-semibold">{displayName}</div>
@@ -378,17 +399,7 @@ export default function DashboardLayout({
 							</div>
 						</div>
 						<div className="flex items-center gap-x-4 lg:gap-x-6">
-							<Button
-								variant="ghost"
-								size="sm"
-								className="relative hover:bg-emerald-50"
-							>
-								<Bell className="h-6 w-6" />
-								<Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs text-white flex items-center justify-center animate-pulse">
-									3
-								</Badge>
-								<span className="sr-only">View notifications</span>
-							</Button>
+							<NotificationDropdown userRole={userRole} />
 
 							{/* Mobile Profile Dropdown */}
 							<div className="lg:hidden">
