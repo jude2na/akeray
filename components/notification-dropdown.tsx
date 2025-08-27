@@ -1,15 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-	Bell,
-	CheckCircle,
-	Clock,
-	AlertCircle,
-	Eye,
-	MarkAsRead,
-	X,
-} from "lucide-react";
+import { Bell, CheckCircle, Clock, AlertCircle, Eye, BookMarked as MarkAsRead, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
