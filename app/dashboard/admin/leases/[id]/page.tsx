@@ -146,13 +146,7 @@ Status,${leaseData.status}
 Payment History
 Month,Amount,Status,Date,Method
 ${leaseData.payments
-<<<<<<< HEAD
 	.map((p) => `${p.month},${p.amount} ETB,${p.status},${p.date},${p.method}`)
-=======
-	.map(
-		(p) => `${p.month},${p.amount} ETB,${p.status},${p.date},${p.method}`
-	)
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 	.join("\n")}
 		`.trim();
 
@@ -267,13 +261,7 @@ ${leaseData.payments
 									<p className="text-lg font-bold text-emerald-600">
 										{leaseData.monthlyRent.toLocaleString()} ብር
 									</p>
-<<<<<<< HEAD
 									<p className="text-sm text-gray-600">Due on 1st of month</p>
-=======
-									<p className="text-sm text-gray-600">
-										Due on 1st of month
-									</p>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 								</div>
 								<div className="space-y-2">
 									<p className="text-sm font-medium text-gray-500">
@@ -285,13 +273,9 @@ ${leaseData.payments
 									<p className="text-sm text-gray-600">2 months rent</p>
 								</div>
 								<div className="space-y-2">
-<<<<<<< HEAD
 									<p className="text-sm font-medium text-gray-500">
 										ሁኔታ / Status
 									</p>
-=======
-									<p className="text-sm font-medium text-gray-500">ሁኔታ / Status</p>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 									<Badge className="bg-emerald-100 text-emerald-800 font-semibold">
 										{leaseData.status}
 									</Badge>
@@ -423,13 +407,9 @@ ${leaseData.payments
 											<p className="text-2xl font-bold text-emerald-600">
 												{leaseData.monthlyRent.toLocaleString()}
 											</p>
-<<<<<<< HEAD
 											<p className="text-sm text-emerald-700">
 												Monthly Rent (ETB)
 											</p>
-=======
-											<p className="text-sm text-emerald-700">Monthly Rent (ETB)</p>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 										</div>
 										<div className="text-center p-4 rounded-xl bg-blue-50 border border-blue-200">
 											<p className="text-2xl font-bold text-blue-600">
@@ -682,8 +662,4 @@ ${leaseData.payments
 			</div>
 		</DashboardLayout>
 	);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb

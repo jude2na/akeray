@@ -129,17 +129,12 @@ export default function AdminProfilePage() {
 										{formData.firstName} {formData.lastName}
 									</CardTitle>
 									<div className="flex justify-center space-x-2 mt-2">
-<<<<<<< HEAD
 										<Badge className="bg-red-100 text-red-800">
 											Administrator
 										</Badge>
 										<Badge className="bg-emerald-100 text-emerald-800">
 											Active
 										</Badge>
-=======
-										<Badge className="bg-red-100 text-red-800">Administrator</Badge>
-										<Badge className="bg-emerald-100 text-emerald-800">Active</Badge>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 									</div>
 								</CardHeader>
 								<CardContent className="space-y-4">
@@ -171,13 +166,7 @@ export default function AdminProfilePage() {
 										<User className="h-5 w-5 text-emerald-600" />
 										<span>Personal Information</span>
 									</CardTitle>
-<<<<<<< HEAD
 									<CardDescription>Your basic personal details</CardDescription>
-=======
-									<CardDescription>
-										Your basic personal details
-									</CardDescription>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 								</CardHeader>
 								<CardContent className="space-y-4">
 									<div className="grid grid-cols-2 gap-4">
@@ -281,13 +270,7 @@ export default function AdminProfilePage() {
 										<Textarea
 											id="bio"
 											value={formData.bio}
-<<<<<<< HEAD
 											onChange={(e) => handleInputChange("bio", e.target.value)}
-=======
-											onChange={(e) =>
-												handleInputChange("bio", e.target.value)
-											}
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 											disabled={!isEditing}
 											className={
 												isEditing
@@ -337,13 +320,9 @@ export default function AdminProfilePage() {
 												</p>
 												<p className="text-sm text-blue-600">Strong</p>
 											</div>
-<<<<<<< HEAD
 											<Badge className="bg-blue-100 text-blue-800">
 												Secure
 											</Badge>
-=======
-											<Badge className="bg-blue-100 text-blue-800">Secure</Badge>
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 										</div>
 
 										<div className="flex items-center justify-between p-3 rounded-xl bg-yellow-50 border border-yellow-200">
@@ -435,8 +414,4 @@ export default function AdminProfilePage() {
 			</div>
 		</DashboardLayout>
 	);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb

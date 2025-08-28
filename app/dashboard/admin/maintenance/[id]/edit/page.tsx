@@ -225,13 +225,9 @@ export default function EditMaintenanceRequestPage() {
 									<Label htmlFor="status">ሁኔታ / Status *</Label>
 									<Select
 										value={formData.status}
-<<<<<<< HEAD
 										onValueChange={(value) =>
 											handleInputChange("status", value)
 										}
-=======
-										onValueChange={(value) => handleInputChange("status", value)}
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 									>
 										<SelectTrigger>
 											<SelectValue />

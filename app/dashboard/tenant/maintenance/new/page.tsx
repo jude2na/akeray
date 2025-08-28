@@ -160,13 +160,7 @@ const tenantProperties = [
 		name: "City Center Complex",
 		address: "Piassa, Addis Ababa",
 		hasUnits: true,
-<<<<<<< HEAD
 		units: [{ id: "2C", name: "Unit 2C", rent: 25000 }],
-=======
-		units: [
-			{ id: "2C", name: "Unit 2C", rent: 25000 },
-		],
->>>>>>> 19e946440717fc32f3496a487e31c61d80af87eb
 		landlord: {
 			name: "Ahmed Hassan",
 			phone: "+251933456789",
@@ -194,8 +188,12 @@ export default function TenantNewMaintenanceRequestPage() {
 	const router = useRouter();
 	const { toast } = useToast();
 
-	const selectedCategory = categories.find((c) => c.value === formData.category);
-	const selectedPriority = priorities.find((p) => p.value === formData.priority);
+	const selectedCategory = categories.find(
+		(c) => c.value === formData.category
+	);
+	const selectedPriority = priorities.find(
+		(p) => p.value === formData.priority
+	);
 
 	const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = Array.from(e.target.files || []);
@@ -787,7 +785,8 @@ export default function TenantNewMaintenanceRequestPage() {
 											Photos (Optional)
 										</CardTitle>
 										<CardDescription>
-											Upload photos to help us understand the issue better (Max 5 images)
+											Upload photos to help us understand the issue better (Max
+											5 images)
 										</CardDescription>
 									</CardHeader>
 									<CardContent className="space-y-6">
