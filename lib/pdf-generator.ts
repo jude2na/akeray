@@ -51,11 +51,10 @@ Terms and Conditions:
 4. Late payment fee of ${lease.lateFeePenalty} ETB after grace period
 5. Tenant responsible for utilities
 6. Property maintenance requests through Akeray system
-7. ${
-		lease.renewalOption
+7. ${lease.renewalOption
 			? "Lease renewable with mutual agreement"
 			: "No automatic renewal option"
-	}
+		}
 
 Contact Information:
 Landlord: ${lease.landlord.name}
