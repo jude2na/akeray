@@ -88,7 +88,6 @@ export default function NewPropertyPage() {
 		e.preventDefault();
 		setIsLoading(true);
 
-		// Validation for units
 		const totalUnitsNum = parseInt(formData.totalUnits) || 0;
 		if (
 			["apartment", "commercial"].includes(formData.propertyType) &&
@@ -104,7 +103,6 @@ export default function NewPropertyPage() {
 			return;
 		}
 
-		// Simulate API call
 		setTimeout(() => {
 			setIsLoading(false);
 			toast({
@@ -191,7 +189,6 @@ export default function NewPropertyPage() {
 			userEmail="admin@akeray.et"
 		>
 			<div className="space-y-6">
-				{/* Header */}
 				<div className="flex items-center justify-between">
 					<div className="flex items-center space-x-4">
 						<Button variant="outline" size="sm" asChild>
@@ -213,7 +210,6 @@ export default function NewPropertyPage() {
 
 				<form onSubmit={handleSubmit} className="space-y-6">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-						{/* Property Details */}
 						<div className="space-y-6">
 							<Card>
 								<CardHeader>
@@ -337,7 +333,6 @@ export default function NewPropertyPage() {
 								</CardContent>
 							</Card>
 
-							{/* Financial Information */}
 							<Card>
 								<CardHeader>
 									<CardTitle className="flex items-center space-x-2">
@@ -382,7 +377,6 @@ export default function NewPropertyPage() {
 								</CardContent>
 							</Card>
 
-							{/* Units Section (Conditional) */}
 							{isMultiUnitProperty && parseInt(formData.totalUnits) > 0 && (
 								<Card>
 									<CardHeader>
@@ -619,7 +613,6 @@ export default function NewPropertyPage() {
 							)}
 						</div>
 
-						{/* Owner Information & Amenities */}
 						<div className="space-y-6">
 							<Card>
 								<CardHeader>
@@ -676,7 +669,6 @@ export default function NewPropertyPage() {
 								</CardContent>
 							</Card>
 
-							{/* Amenities */}
 							<Card>
 								<CardHeader>
 									<CardTitle className="flex items-center space-x-2">
@@ -713,7 +705,6 @@ export default function NewPropertyPage() {
 								</CardContent>
 							</Card>
 
-							{/* Property Images */}
 							<Card>
 								<CardHeader>
 									<CardTitle className="flex items-center space-x-2">
@@ -749,7 +740,6 @@ export default function NewPropertyPage() {
 						</div>
 					</div>
 
-					{/* Action Buttons */}
 					<div className="flex justify-end space-x-4">
 						<Button variant="outline" type="button" asChild>
 							<Link href="/dashboard/admin/properties">ተወው / Cancel</Link>

@@ -131,7 +131,6 @@ export default function PropertiesPage() {
 			userEmail="admin@apms.et"
 		>
 			<div className="space-y-6">
-				{/* Header */}
 				<div className="flex items-center justify-between">
 					<div>
 						<h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
@@ -153,7 +152,6 @@ export default function PropertiesPage() {
 					</Button>
 				</div>
 
-				{/* Search and Filter */}
 				<div className="flex flex-col sm:flex-row gap-4">
 					<div className="relative flex-1">
 						<Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -192,7 +190,6 @@ export default function PropertiesPage() {
 					</DropdownMenu>
 				</div>
 
-				{/* Properties Grid */}
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{filteredProperties.map((property, index) => (
 						<Card
@@ -230,7 +227,6 @@ export default function PropertiesPage() {
 							</CardHeader>
 
 							<CardContent className="space-y-4">
-								{/* Stats */}
 								<div className="grid grid-cols-3 gap-4 text-center">
 									<div>
 										<div className="flex items-center justify-center mb-1">
@@ -263,7 +259,6 @@ export default function PropertiesPage() {
 									</div>
 								</div>
 
-								{/* Owner */}
 								<div className="flex items-center space-x-2 pt-2 border-t">
 									<Avatar className="h-6 w-6">
 										<AvatarImage src="/placeholder-user.jpg" />
@@ -279,7 +274,6 @@ export default function PropertiesPage() {
 									</span>
 								</div>
 
-								{/* Actions */}
 								<div className="flex space-x-2 pt-2">
 									<Button
 										variant="outline"
@@ -337,7 +331,6 @@ export default function PropertiesPage() {
 					))}
 				</div>
 
-				{/* Empty State */}
 				{filteredProperties.length === 0 && (
 					<Card className="text-center py-12">
 						<CardContent>

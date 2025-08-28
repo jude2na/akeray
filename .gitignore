@@ -2,8 +2,6 @@
 
 # dependencies
 /node_modules
-/Backend/node_modules
-/Backend/.env
 
 # next.js
 /.next/
