@@ -171,9 +171,13 @@ export default function PropertyUnitsPage() {
 										alt={`Unit ${unit.unitNumber}`}
 										className="w-full h-48 object-cover rounded-t-lg"
 									/>
-									<Badge className="absolute top-3 left-3 bg-emerald-500 text-white">
-										Available
-									</Badge>
+									<div className="absolute top-3 left-3 flex space-x-2">
+										<Badge className="bg-emerald-500 text-white">
+											Available
+										</Badge>
+										{/* Add listing type badge based on unit data */}
+										<Badge className="bg-blue-500 text-white">For Rent</Badge>
+									</div>
 									<Badge className="absolute top-3 right-3 bg-blue-500 text-white">
 										Floor {unit.floor}
 									</Badge>
@@ -288,17 +292,33 @@ export default function PropertyUnitsPage() {
 												View Details
 											</Link>
 										</Button>
-										<Button
-											size="sm"
-											className="flex-1 bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700"
-											asChild
-										>
-											<Link
-												href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/rent`}
+										{/* Show different buttons based on listing type */}
+										<div className="flex-1 flex space-x-1">
+											<Button
+												size="sm"
+												className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700"
+												asChild
 											>
-												Request to Rent
-											</Link>
-										</Button>
+												<Link
+													href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/rent`}
+												>
+													Rent
+												</Link>
+											</Button>
+											{/* Add buy button for units that are for sale */}
+											<Button
+												size="sm"
+												variant="outline"
+												className="flex-1 border-emerald-300 hover:bg-emerald-50"
+												asChild
+											>
+												<Link
+													href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/buy`}
+												>
+													Buy
+												</Link>
+											</Button>
+										</div>
 									</div>
 								</CardContent>
 							</Card>

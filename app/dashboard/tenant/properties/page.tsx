@@ -11,6 +11,7 @@ import {
 	Users,
 	Star,
 	Heart,
+  Home
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,7 +41,10 @@ const properties = [
 		address: "Bole Road, Addis Ababa",
 		totalUnits: 20,
 		availableUnits: 3,
-		priceRange: "15,000 - 25,000 ETB",
+		listingType: "rent",
+		rentPriceRange: "15,000 - 25,000 ETB",
+		salePriceRange: null,
+		minLeaseTerm: 6,
 		rating: 4.8,
 		reviews: 24,
 		amenities: ["24/7 Security", "Parking", "WiFi", "Generator"],
@@ -54,7 +58,10 @@ const properties = [
 		address: "Kazanchis, Addis Ababa",
 		totalUnits: 30,
 		availableUnits: 5,
-		priceRange: "18,000 - 28,000 ETB",
+		listingType: "both",
+		rentPriceRange: "18,000 - 28,000 ETB",
+		salePriceRange: "2.5M - 4.2M ETB",
+		minLeaseTerm: 12,
 		rating: 4.6,
 		reviews: 18,
 		amenities: ["Swimming Pool", "Gym", "Security", "Parking"],
@@ -68,7 +75,10 @@ const properties = [
 		address: "Piassa, Addis Ababa",
 		totalUnits: 15,
 		availableUnits: 0,
-		priceRange: "22,000 - 35,000 ETB",
+		listingType: "sell",
+		rentPriceRange: null,
+		salePriceRange: "3.5M - 6.8M ETB",
+		minLeaseTerm: null,
 		rating: 4.9,
 		reviews: 31,
 		amenities: ["Elevator", "Security", "Modern Kitchen", "Balcony"],
@@ -82,7 +92,10 @@ const properties = [
 		address: "CMC Area, Addis Ababa",
 		totalUnits: 25,
 		availableUnits: 2,
-		priceRange: "20,000 - 30,000 ETB",
+		listingType: "rent",
+		rentPriceRange: "20,000 - 30,000 ETB",
+		salePriceRange: null,
+		minLeaseTerm: 3,
 		rating: 4.7,
 		reviews: 15,
 		amenities: ["River View", "Security", "Parking", "Garden"],
@@ -96,7 +109,10 @@ const properties = [
 		address: "Gerji, Addis Ababa",
 		totalUnits: 18,
 		availableUnits: 4,
-		priceRange: "16,000 - 24,000 ETB",
+		listingType: "both",
+		rentPriceRange: "16,000 - 24,000 ETB",
+		salePriceRange: "2.8M - 4.5M ETB",
+		minLeaseTerm: 6,
 		rating: 4.5,
 		reviews: 12,
 		amenities: ["Modern Design", "Security", "WiFi", "Backup Power"],
@@ -110,7 +126,10 @@ const properties = [
 		address: "Megenagna, Addis Ababa",
 		totalUnits: 12,
 		availableUnits: 1,
-		priceRange: "25,000 - 40,000 ETB",
+		listingType: "sell",
+		rentPriceRange: null,
+		salePriceRange: "5.2M - 8.5M ETB",
+		minLeaseTerm: null,
 		rating: 4.9,
 		reviews: 28,
 		amenities: ["Luxury Finishes", "Concierge", "Gym", "Rooftop Terrace"],
@@ -123,7 +142,8 @@ const properties = [
 export default function TenantPropertiesPage() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filterAvailability, setFilterAvailability] = useState("all");
-	const [filterPriceRange, setFilterPriceRange] = useState("all");
+	const [filterListingType, setFilterListingType] = useState("all");
+	const [filterMinLease, setFilterMinLease] = useState("all");
 	const [favorites, setFavorites] = useState<number[]>([]);
 
 	const filteredProperties = properties.filter((property) => {
@@ -134,7 +154,16 @@ export default function TenantPropertiesPage() {
 			filterAvailability === "all" ||
 			(filterAvailability === "available" && property.availableUnits > 0) ||
 			(filterAvailability === "full" && property.availableUnits === 0);
-		return matchesSearch && matchesAvailability;
+		const matchesListingType =
+			filterListingType === "all" || 
+			property.listingType === filterListingType || 
+			property.listingType === "both";
+		const matchesMinLease =
+			filterMinLease === "all" ||
+			!property.minLeaseTerm ||
+			(filterMinLease === "short" && property.minLeaseTerm <= 6) ||
+			(filterMinLease === "long" && property.minLeaseTerm > 6);
+		return matchesSearch && matchesAvailability && matchesListingType && matchesMinLease;
 	});
 
 	const toggleFavorite = (propertyId: number) => {
@@ -153,6 +182,9 @@ export default function TenantPropertiesPage() {
 		(sum, p) => sum + p.availableUnits,
 		0
 	);
+	const forSaleProperties = properties.filter(
+		(p) => p.listingType === "sell" || p.listingType === "both"
+	).length;
 
 	return (
 		<DashboardLayout
@@ -246,11 +278,33 @@ export default function TenantPropertiesPage() {
 							</CardContent>
 						</Card>
 					</div>
+					<div
+						className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-750"
+						style={{ animationFillMode: "forwards" }}
+					>
+						<Card className="hover:shadow-xl transition-all duration-500 border-l-4 border-emerald-200 group cursor-pointer transform hover:scale-105 bg-white/80 backdrop-blur-sm">
+							<CardContent className="p-6">
+								<div className="flex items-center justify-between">
+									<div className="space-y-3">
+										<p className="text-sm font-semibold text-gray-600">
+											For Sale
+										</p>
+										<p className="text-3xl font-bold text-gray-900">
+											{forSaleProperties}
+										</p>
+									</div>
+									<div className="p-4 rounded-3xl bg-emerald-50 group-hover:scale-125 transition-transform duration-500 shadow-lg">
+										<Home className="h-8 w-8 text-emerald-600" />
+									</div>
+								</div>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
 
 				{/* Search and Filter */}
 				<div
-					className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-750"
+					className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-900"
 					style={{ animationFillMode: "forwards" }}
 				>
 					<div className="flex flex-col sm:flex-row gap-4">
@@ -295,6 +349,59 @@ export default function TenantPropertiesPage() {
 									</DropdownMenuItem>
 								</DropdownMenuContent>
 							</DropdownMenu>
+							
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										className="border-blue-300 hover:bg-blue-50 bg-transparent"
+									>
+										<Filter className="h-4 w-4 mr-2" />
+										Type: {filterListingType === "all" ? "All" : filterListingType}
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent align="end">
+									<DropdownMenuLabel>Filter by Listing Type</DropdownMenuLabel>
+									<DropdownMenuSeparator />
+									<DropdownMenuItem onClick={() => setFilterListingType("all")}>
+										All Types
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setFilterListingType("rent")}>
+										For Rent
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setFilterListingType("sell")}>
+										For Sale
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setFilterListingType("both")}>
+										Both
+									</DropdownMenuItem>
+								</DropdownMenuContent>
+							</DropdownMenu>
+							
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										className="border-purple-300 hover:bg-purple-50 bg-transparent"
+									>
+										<Filter className="h-4 w-4 mr-2" />
+										Lease: {filterMinLease === "all" ? "All" : filterMinLease}
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent align="end">
+									<DropdownMenuLabel>Filter by Min Lease Term</DropdownMenuLabel>
+									<DropdownMenuSeparator />
+									<DropdownMenuItem onClick={() => setFilterMinLease("all")}>
+										All Terms
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setFilterMinLease("short")}>
+										Short Term (≤6 months)
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setFilterMinLease("long")}>
+										Long Term (>6 months)
+									</DropdownMenuItem>
+								</DropdownMenuContent>
+							</DropdownMenu>
 						</div>
 					</div>
 				</div>
@@ -330,6 +437,21 @@ export default function TenantPropertiesPage() {
 										) : (
 											<Badge className="bg-red-500 text-white">Full</Badge>
 										)}
+										<Badge
+											className={
+												property.listingType === "rent"
+													? "bg-blue-500 text-white"
+													: property.listingType === "sell"
+													? "bg-emerald-500 text-white"
+													: "bg-purple-500 text-white"
+											}
+										>
+											{property.listingType === "rent"
+												? "Rent"
+												: property.listingType === "sell"
+												? "Sale"
+												: "Rent & Sale"}
+										</Badge>
 									</div>
 									<Button
 										variant="ghost"
@@ -397,10 +519,21 @@ export default function TenantPropertiesPage() {
 											<div className="flex items-center justify-center mb-1">
 												<DollarSign className="h-4 w-4 text-gray-500" />
 											</div>
-											<p className="text-sm font-medium">
-												{property.priceRange}
-											</p>
-											<p className="text-xs text-gray-500">Price Range</p>
+											{property.listingType === "sell" ? (
+												<>
+													<p className="text-sm font-medium">
+														{property.salePriceRange}
+													</p>
+													<p className="text-xs text-gray-500">Sale Price</p>
+												</>
+											) : (
+												<>
+													<p className="text-sm font-medium">
+														{property.rentPriceRange}
+													</p>
+													<p className="text-xs text-gray-500">Rent Range</p>
+												</>
+											)}
 										</div>
 									</div>
 
@@ -422,6 +555,15 @@ export default function TenantPropertiesPage() {
 											)}
 										</div>
 									</div>
+
+									{/* Lease Term Info */}
+									{property.listingType !== "sell" && property.minLeaseTerm && (
+										<div className="text-center p-2 rounded-lg bg-blue-50 border border-blue-200">
+											<p className="text-xs text-blue-700">
+												Min Lease: {property.minLeaseTerm} months
+											</p>
+										</div>
+									)}
 
 									{/* Actions */}
 									<div className="flex space-x-2 pt-2">
@@ -447,7 +589,7 @@ export default function TenantPropertiesPage() {
 												<Link
 													href={`/dashboard/tenant/properties/${property.id}/units`}
 												>
-													View Units
+													{property.listingType === "sell" ? "View & Buy" : "View Units"}
 												</Link>
 											</Button>
 										)}
