@@ -38,7 +38,11 @@ const getPropertyData = (id: string) => ({
 	area: "Bole",
 	totalUnits: 20,
 	availableUnits: 3,
-	priceRange: "15,000 - 25,000 ETB",
+	listingType: "both", // rent, sell, both
+	rentPriceRange: "15,000 - 25,000 ETB",
+	salePrice: 8500000,
+	pricePerSqm: 85000,
+	minLeaseTerm: 12,
 	rating: 4.8,
 	reviews: 24,
 	yearBuilt: 2020,
@@ -153,16 +157,45 @@ export default function PropertyDetailsPage() {
 								{isFavorite ? "Saved" : "Save"}
 							</Button>
 							{property.availableUnits > 0 && (
-								<Button
-									asChild
-									className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-300"
-								>
-									<Link
-										href={`/dashboard/tenant/properties/${property.id}/units`}
-									>
-										View Available Units
-									</Link>
-								</Button>
+								<div className="flex flex-col sm:flex-row gap-4 justify-center">
+									{property.totalUnits > 1 ? (
+										<Button
+											asChild
+											className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-300"
+										>
+											<Link href={`/dashboard/tenant/properties/${property.id}/units`}>
+												View Available Units
+											</Link>
+										</Button>
+									) : (
+										<>
+											{(property.listingType === "rent" || property.listingType === "both") && (
+												<Button
+													asChild
+													className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700 shadow-lg transform hover:scale-105 transition-all duration-300"
+												>
+													<Link href={`/dashboard/tenant/properties/${property.id}/rent`}>
+														Request to Rent
+													</Link>
+												</Button>
+											)}
+											{(property.listingType === "sell" || property.listingType === "both") && (
+												<Button
+													asChild
+													variant={property.listingType === "both" ? "outline" : "default"}
+													className={property.listingType === "both" 
+														? "border-emerald-300 hover:bg-emerald-50" 
+														: "bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-300"
+													}
+												>
+													<Link href={`/dashboard/tenant/properties/${property.id}/buy`}>
+														Request to Buy
+													</Link>
+												</Button>
+											)}
+										</>
+									)}
+								</div>
 							)}
 						</div>
 					</div>

@@ -31,6 +31,7 @@ const getUnitsData = (propertyId: string) => ({
 		id: parseInt(propertyId),
 		name: "Sunrise Apartments",
 		address: "Bole Road, Near Atlas Hotel, Addis Ababa",
+		listingType: "both", // rent, sell, both
 	},
 	units: [
 		{
@@ -40,8 +41,10 @@ const getUnitsData = (propertyId: string) => ({
 			bedrooms: 1,
 			bathrooms: 1,
 			area: "45 sqm",
+			listingType: "rent",
 			monthlyRent: 15000,
 			deposit: 30000,
+			salePrice: null,
 			status: "available",
 			description:
 				"Cozy studio apartment perfect for young professionals. Features modern kitchen and private balcony.",
@@ -59,8 +62,10 @@ const getUnitsData = (propertyId: string) => ({
 			bedrooms: 2,
 			bathrooms: 1,
 			area: "65 sqm",
+			listingType: "both",
 			monthlyRent: 20000,
 			deposit: 40000,
+			salePrice: 3500000,
 			status: "available",
 			description:
 				"Spacious two-bedroom apartment with city view. Ideal for small families or roommates.",
@@ -78,8 +83,10 @@ const getUnitsData = (propertyId: string) => ({
 			bedrooms: 2,
 			bathrooms: 2,
 			area: "75 sqm",
+			listingType: "sell",
 			monthlyRent: 25000,
 			deposit: 50000,
+			salePrice: 4200000,
 			status: "available",
 			description:
 				"Premium apartment with two full bathrooms and premium finishes. Perfect for executives.",
@@ -175,8 +182,21 @@ export default function PropertyUnitsPage() {
 										<Badge className="bg-emerald-500 text-white">
 											Available
 										</Badge>
-										{/* Add listing type badge based on unit data */}
-										<Badge className="bg-blue-500 text-white">For Rent</Badge>
+										<Badge
+											className={
+												unit.listingType === "rent"
+													? "bg-blue-500 text-white"
+													: unit.listingType === "sell"
+													? "bg-emerald-500 text-white"
+													: "bg-purple-500 text-white"
+											}
+										>
+											{unit.listingType === "rent"
+												? "For Rent"
+												: unit.listingType === "sell"
+												? "For Sale"
+												: "Rent & Sale"}
+										</Badge>
 									</div>
 									<Badge className="absolute top-3 right-3 bg-blue-500 text-white">
 										Floor {unit.floor}
@@ -250,13 +270,24 @@ export default function PropertyUnitsPage() {
 
 									{/* Financial Info */}
 									<div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-										<div className="grid grid-cols-2 gap-4 text-sm">
-											<div>
-												<p className="text-gray-600">Monthly Rent:</p>
-												<p className="font-semibold text-emerald-600">
-													{unit.monthlyRent.toLocaleString()} ETB
+										{(unit.listingType === "rent" || unit.listingType === "both") && (
+											<div className="p-3 rounded-xl bg-blue-50 border border-blue-200">
+												<DollarSign className="h-5 w-5 text-blue-600 mx-auto mb-1" />
+												<p className="text-lg font-bold text-blue-600">
+													{unit.monthlyRent.toLocaleString()}
 												</p>
+												<p className="text-xs text-blue-700">Monthly Rent</p>
 											</div>
+										)}
+										{(unit.listingType === "sell" || unit.listingType === "both") && (
+											<div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+												<DollarSign className="h-5 w-5 text-emerald-600 mx-auto mb-1" />
+												<p className="text-lg font-bold text-emerald-600">
+													{unit.salePrice ? (unit.salePrice / 1000000).toFixed(1) + "M" : "N/A"}
+												</p>
+												<p className="text-xs text-emerald-700">Sale Price</p>
+											</div>
+										)}
 											<div>
 												<p className="text-gray-600">Security Deposit:</p>
 												<p className="font-semibold">
@@ -292,33 +323,51 @@ export default function PropertyUnitsPage() {
 												View Details
 											</Link>
 										</Button>
-										{/* Show different buttons based on listing type */}
-										<div className="flex-1 flex space-x-1">
+										{unit.listingType === "rent" && (
 											<Button
 												size="sm"
 												className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700"
 												asChild
 											>
-												<Link
-													href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/rent`}
-												>
+												<Link href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/rent`}>
 													Rent
 												</Link>
 											</Button>
-											{/* Add buy button for units that are for sale */}
+										)}
+										{unit.listingType === "sell" && (
 											<Button
 												size="sm"
-												variant="outline"
-												className="flex-1 border-emerald-300 hover:bg-emerald-50"
+												className="flex-1 bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700"
 												asChild
 											>
-												<Link
-													href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/buy`}
-												>
+												<Link href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/buy`}>
 													Buy
 												</Link>
 											</Button>
-										</div>
+										)}
+										{unit.listingType === "both" && (
+											<div className="flex-1 flex space-x-1">
+												<Button
+													size="sm"
+													className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-700 hover:to-emerald-700"
+													asChild
+												>
+													<Link href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/rent`}>
+														Rent
+													</Link>
+												</Button>
+												<Button
+													size="sm"
+													variant="outline"
+													className="flex-1 border-emerald-300 hover:bg-emerald-50"
+													asChild
+												>
+													<Link href={`/dashboard/tenant/properties/${params.id}/units/${unit.id}/buy`}>
+														Buy
+													</Link>
+												</Button>
+											</div>
+										)}
 									</div>
 								</CardContent>
 							</Card>

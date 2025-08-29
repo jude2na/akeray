@@ -574,9 +574,23 @@ export default function TenantPropertiesPage() {
 											asChild
 										>
 											<Link
-												href={`/dashboard/tenant/properties/${property.id}`}
+												href={
+													property.totalUnits > 1
+														? `/dashboard/tenant/properties/${property.id}/units`
+														: property.listingType === "sell"
+														? `/dashboard/tenant/properties/${property.id}/buy`
+														: property.listingType === "both"
+														? `/dashboard/tenant/properties/${property.id}/actions`
+														: `/dashboard/tenant/properties/${property.id}/rent`
+												}
 											>
-												<Eye className="h-4 w-4 mr-1" />
+												{property.totalUnits > 1
+													? "View Units"
+													: property.listingType === "sell"
+													? "Buy Property"
+													: property.listingType === "both"
+													? "Rent or Buy"
+													: "Rent Property"}
 												View Details
 											</Link>
 										</Button>
