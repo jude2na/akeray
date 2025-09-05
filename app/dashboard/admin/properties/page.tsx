@@ -58,6 +58,7 @@ const properties = [
 		monthlyRevenue: 450000,
 		listingType: "rent",
 		salePrice: null,
+		pricePerSqm: null,
 		minLeaseTerm: 12,
 		owner: "John Smith",
 		status: "active",
@@ -72,6 +73,7 @@ const properties = [
 		monthlyRevenue: 720000,
 		listingType: "both",
 		salePrice: 15000000,
+		pricePerSqm: 85000,
 		minLeaseTerm: 6,
 		owner: "Sarah Johnson",
 		status: "active",
@@ -83,9 +85,10 @@ const properties = [
 		address: "789 Business District",
 		totalUnits: 15,
 		occupiedUnits: 15,
-		monthlyRevenue: 600000,
+		monthlyRevenue: null,
 		listingType: "sell",
 		salePrice: 25000000,
+		pricePerSqm: 120000,
 		minLeaseTerm: null,
 		owner: "Michael Brown",
 		status: "active",
@@ -312,7 +315,8 @@ export default function PropertiesPage() {
 									</div>
 									<div>
 										<div className="flex items-center justify-center mb-1">
-											{property.listingType === "sell" ? (
+											{property.listingType === "sell" ||
+											property.listingType === "both" ? (
 												<Tag className="h-4 w-4 text-gray-500" />
 											) : (
 												<DollarSign className="h-4 w-4 text-gray-500" />
@@ -326,6 +330,15 @@ export default function PropertiesPage() {
 														: "N/A"}
 												</p>
 												<p className="text-xs text-gray-500">Sale Price</p>
+											</>
+										) : property.listingType === "both" ? (
+											<>
+												<p className="text-sm font-medium">
+													{property.monthlyRevenue
+														? (property.monthlyRevenue / 1000).toFixed(0) + "K"
+														: "N/A"}
+												</p>
+												<p className="text-xs text-gray-500">Rent/Sale</p>
 											</>
 										) : (
 											<>

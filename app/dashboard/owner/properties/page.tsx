@@ -12,6 +12,7 @@ import {
 	Users,
 	DollarSign,
 	TrendingUp,
+	Tag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +44,9 @@ const properties = [
 		totalUnits: 12,
 		occupiedUnits: 11,
 		monthlyRevenue: 180000,
+		listingType: "rent",
+		salePrice: null,
+		pricePerSqm: null,
 		status: "active",
 		image:
 			"https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -54,6 +58,9 @@ const properties = [
 		totalUnits: 16,
 		occupiedUnits: 14,
 		monthlyRevenue: 220000,
+		listingType: "both",
+		salePrice: 8500000,
+		pricePerSqm: 95000,
 		status: "active",
 		image:
 			"https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -64,7 +71,10 @@ const properties = [
 		address: "Piassa, Addis Ababa",
 		totalUnits: 8,
 		occupiedUnits: 8,
-		monthlyRevenue: 150000,
+		monthlyRevenue: null,
+		listingType: "sell",
+		salePrice: 12000000,
+		pricePerSqm: 110000,
 		status: "active",
 		image:
 			"https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -76,6 +86,9 @@ const properties = [
 		totalUnits: 20,
 		occupiedUnits: 17,
 		monthlyRevenue: 300000,
+		listingType: "rent",
+		salePrice: null,
+		pricePerSqm: null,
 		status: "maintenance",
 		image:
 			"https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -323,6 +336,21 @@ export default function OwnerPropertiesPage() {
 									>
 										{property.status}
 									</Badge>
+									<Badge
+										className={`absolute top-3 left-3 ${
+											property.listingType === "rent"
+												? "bg-blue-100 text-blue-800"
+												: property.listingType === "sell"
+												? "bg-emerald-100 text-emerald-800"
+												: "bg-purple-100 text-purple-800"
+										}`}
+									>
+										{property.listingType === "rent"
+											? "For Rent"
+											: property.listingType === "sell"
+											? "For Sale"
+											: "Rent & Sale"}
+									</Badge>
 								</div>
 
 								<CardHeader className="pb-3">
@@ -366,12 +394,39 @@ export default function OwnerPropertiesPage() {
 										</div>
 										<div>
 											<div className="flex items-center justify-center mb-1">
-												<DollarSign className="h-4 w-4 text-gray-500" />
+												{property.listingType === "sell" ? (
+													<Tag className="h-4 w-4 text-gray-500" />
+												) : (
+													<DollarSign className="h-4 w-4 text-gray-500" />
+												)}
 											</div>
-											<p className="text-sm font-medium">
-												{(property.monthlyRevenue / 1000).toFixed(0)}K ETB
-											</p>
-											<p className="text-xs text-gray-500">Monthly</p>
+											{property.listingType === "sell" ? (
+												<>
+													<p className="text-sm font-medium">
+														{property.salePrice
+															? (property.salePrice / 1000000).toFixed(1) + "M"
+															: "N/A"}
+													</p>
+													<p className="text-xs text-gray-500">Sale Price</p>
+												</>
+											) : property.listingType === "both" ? (
+												<>
+													<p className="text-sm font-medium">
+														{property.monthlyRevenue
+															? (property.monthlyRevenue / 1000).toFixed(0) +
+															  "K"
+															: "N/A"}
+													</p>
+													<p className="text-xs text-gray-500">Rent/Sale</p>
+												</>
+											) : (
+												<>
+													<p className="text-sm font-medium">
+														{(property.monthlyRevenue / 1000).toFixed(0)}K ETB
+													</p>
+													<p className="text-xs text-gray-500">Monthly</p>
+												</>
+											)}
 										</div>
 									</div>
 
