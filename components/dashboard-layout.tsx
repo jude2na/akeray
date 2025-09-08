@@ -51,6 +51,7 @@ const navigationItems = {
 		{ name: "Properties", href: "/dashboard/admin/properties", icon: Building },
 		{ name: "Leases", href: "/dashboard/admin/leases", icon: FileText },
 		{ name: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
+		{ name: "Invoices", href: "/dashboard/admin/invoices", icon: FileText },
 		{ name: "Maintenance", href: "/dashboard/admin/maintenance", icon: Wrench },
 		{ name: "Reports", href: "/dashboard/admin/reports", icon: BarChart3 },
 		{ name: "Sales", href: "/dashboard/admin/sales", icon: TrendingUp },
@@ -66,6 +67,7 @@ const navigationItems = {
 		{ name: "Properties", href: "/dashboard/owner/properties", icon: Building },
 		{ name: "Leases", href: "/dashboard/owner/leases", icon: FileText },
 		{ name: "Payments", href: "/dashboard/owner/payments", icon: CreditCard },
+		{ name: "Invoices", href: "/dashboard/owner/invoices", icon: FileText },
 		{ name: "Reports", href: "/dashboard/owner/reports", icon: BarChart3 },
 		{
 			name: "Notifications",
@@ -91,6 +93,7 @@ const navigationItems = {
 			icon: FileText,
 		},
 		{ name: "Payments", href: "/dashboard/tenant/payments", icon: CreditCard },
+		{ name: "Invoices", href: "/dashboard/tenant/invoices", icon: FileText },
 		{ name: "Lease", href: "/dashboard/tenant/lease", icon: FileText },
 		{
 			name: "Maintenance",
